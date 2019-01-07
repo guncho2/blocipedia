@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
+  get 'wiki/edit'
+  get 'wiki/new'
+  get 'wiki/show'
+  get 'wiki/index'
+
+
   devise_for :users
   get 'welcome/index'
   get 'welcome/about'
+
+  resources :wikis
+
+	  get 'about' => 'welcome#about'
+
 # defaultroute:
   root 'welcome#index'
 

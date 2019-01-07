@@ -5,4 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
+has_many :wikis, dependent: :destroy
+         private
+
+  def send_confirm_email
+    UserMailer.new_user(self).deliver_now
+
+  end
+
 end
