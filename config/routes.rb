@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'wiki/edit'
-  get 'wiki/new'
-  get 'wiki/show'
-  get 'wiki/index'
+  get 'wikis/edit'
+  get 'wikis/new'
+  get 'wikis/show'
+  get 'wikis/index'
 
 
   devise_for :users

@@ -7,7 +7,7 @@ class WikisController < ApplicationController
 
   def new
 @user = User.find_by(id: session[:user_id])
-    @wikis = Wiki.new
+    @wiki = Wiki.new
 
 
   end
@@ -24,9 +24,12 @@ class WikisController < ApplicationController
   	  end
 
   def create
-	    @wiki = Wiki.new
-      @wiki = Wiki.new(params[:id])
-      @wiki.assign_attributes(wiki_params)
+	    # @wiki = Wiki.new
+      # @wiki = Wiki.new(params[:id])
+      # @wiki.assign_attributes(wiki_params)
+
+      @wiki = Wiki.new(wiki_params)
+
 	    # @wiki.title = params[:wiki][:title]
 	    # @wiki.body = params[:wiki][:body]
 
