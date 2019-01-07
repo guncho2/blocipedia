@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class WikiControllerTest < ActionDispatch::IntegrationTest
+class WikisControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
     get wiki_edit_url
     assert_response :success

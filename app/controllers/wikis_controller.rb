@@ -1,4 +1,4 @@
-class WikiController < ApplicationController
+class WikisController < ApplicationController
   def edit
 
     @wiki = Wiki.find(params[:id])
@@ -7,14 +7,14 @@ class WikiController < ApplicationController
 
   def new
 @user = User.find_by(id: session[:user_id])
-    @wiki = Wiki.new
+    @wikis = Wiki.new
 
 
   end
 
   def show
 
-    @wiki = Wiki.find(params[:id])
+    @wikis = Wiki.find(params[:id])
 
   end
 
@@ -29,7 +29,7 @@ class WikiController < ApplicationController
       @wiki.assign_attributes(wiki_params)
 	    # @wiki.title = params[:wiki][:title]
 	    # @wiki.body = params[:wiki][:body]
-      
+
 
 	    if @wiki.save
 	      flash[:notice] = "Wiki was saved."

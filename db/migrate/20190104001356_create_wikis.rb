@@ -1,4 +1,4 @@
-class CreateWikis < ActiveRecord::Migration[5.2]
+class Createwiki < ActiveRecord::Migration[5.2]
   def change
     create_table :wikis do |t|
       t.string :title

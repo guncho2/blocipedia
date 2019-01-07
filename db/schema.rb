@@ -43,5 +43,5 @@ ActiveRecord::Schema.define(version: 2019_01_04_001356) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_wikis_on_user_id"
   end
-add_index "wikis", ["user_id"], name: "index_wikis_on_user_id"
+
 end
