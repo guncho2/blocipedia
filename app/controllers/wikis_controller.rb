@@ -6,7 +6,7 @@ class WikisController < ApplicationController
   end
 
   def new
-@user = User.find_by(id: session[:user_id])
+@users = User.find_by(id: session[:user_id])
     @wiki = Wiki.new
 
 
@@ -14,27 +14,30 @@ class WikisController < ApplicationController
 
   def show
 
-    @wikis = Wiki.find(params[:id])
+    @wiki = Wiki.find(params[:id])
 
   end
 
   def index
-        @user = User.find_by(id: session[:user_id])
+        @users = User.find_by(id: session[:user_id])
   	    @wikis = Wiki.all
   	  end
 
   def create
+    @wiki = current_user.wikis.new(wiki_params)
+    # @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
 	    # @wiki = Wiki.new
       # @wiki = Wiki.new(params[:id])
       # @wiki.assign_attributes(wiki_params)
 
-      @wiki = Wiki.new(wiki_params)
+      # @wiki = Wiki.new(wiki_params)
 
 	    # @wiki.title = params[:wiki][:title]
 	    # @wiki.body = params[:wiki][:body]
 
 
 	    if @wiki.save
+
 	      flash[:notice] = "Wiki was saved."
 	      redirect_to @wiki
 	    else
