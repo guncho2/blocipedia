@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   # get 'wikis/new'
   # get 'wikis/show'
   # get 'wikis/index'
-  
+
 
   devise_for :users
   get 'welcome/index'
   get 'welcome/about'
+    
 
   resources :wikis
 
