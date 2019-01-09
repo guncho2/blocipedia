@@ -52,7 +52,7 @@ class WikisController < ApplicationController
 
 	     if @wiki.destroy
 	       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
-	       redirect_to wiki_new_path
+	       redirect_to new_wiki_path
 	     else
 	       flash.now[:alert] = "There was an error deleting the post."
 	       render :show
