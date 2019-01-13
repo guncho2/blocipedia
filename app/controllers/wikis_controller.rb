@@ -19,7 +19,7 @@ class WikisController < ApplicationController
   end
 
   def index
-        @users = User.find_by(id: session[:user_id])
+        # @users = User.find_by(id: session[:user_id])
   	    @wikis = Wiki.all
   	  end
 
