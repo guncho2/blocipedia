@@ -19,7 +19,7 @@ class WikisController < ApplicationController
   end
 
   def index
-        @users = User.find_by(id: session[:user_id])
+      
   	    @wikis = Wiki.all
   	  end
 
@@ -61,8 +61,10 @@ class WikisController < ApplicationController
 
      def update
     	    @wiki = Wiki.find(params[:id])
-    	    @wiki.title = params[:wiki][:title]
-    	    @wiki.body = params[:wiki][:body]
+    	    # @wiki.title = params[:wiki][:title]
+    	    # @wiki.body = params[:wiki][:body]
+          @wiki.assign_attributes(wiki_params)
+
 
     	    if @wiki.save
     	      flash[:notice] = "Wiki was updated."
