@@ -19,7 +19,7 @@ class WikisController < ApplicationController
   end
 
   def index
-      
+
   	    @wikis = Wiki.all
   	  end
 
@@ -50,6 +50,8 @@ class WikisController < ApplicationController
     def destroy
 	     @wiki = Wiki.find(params[:id])
 
+       authorize @wiki
+
 	     if @wiki.destroy
 	       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
 	       redirect_to new_wiki_path
@@ -61,10 +63,12 @@ class WikisController < ApplicationController
 
      def update
     	    @wiki = Wiki.find(params[:id])
+          @user = User.find(current_user.id)
     	    # @wiki.title = params[:wiki][:title]
     	    # @wiki.body = params[:wiki][:body]
           @wiki.assign_attributes(wiki_params)
 
+          authorize @wiki
 
     	    if @wiki.save
     	      flash[:notice] = "Wiki was updated."
