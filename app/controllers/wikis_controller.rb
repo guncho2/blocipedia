@@ -64,6 +64,7 @@ class WikisController < ApplicationController
      def update
     	    @wiki = Wiki.find(params[:id])
           @user = User.find(current_user.id)
+          #  @wiki.private = params[:wiki][:private]
     	    # @wiki.title = params[:wiki][:title]
     	    # @wiki.body = params[:wiki][:body]
           @wiki.assign_attributes(wiki_params)

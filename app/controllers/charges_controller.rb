@@ -17,7 +17,8 @@ class ChargesController < ApplicationController
    )
 
    flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
-   redirect_to user_path(current_user) # or wherever
+   current_user.update_attributes(role: "premium")
+   redirect_to wikis_path(current_user) # or wherever
 
    # Stripe will send back CardErrors, with friendly messages
    # when something goes wrong.
@@ -32,7 +33,7 @@ class ChargesController < ApplicationController
 
     @stripe_btn_data = {
      key: "#{ Rails.configuration.stripe[:publishable_key] }",
-     description: "BigMoney Membership - #{current_user.name}",
+     description: "BigMoney Membership - #{current_user.email}",
      amount: Amount.default
    }
 
@@ -52,14 +53,7 @@ class ChargesController < ApplicationController
     redirect_to edit_user_registration_path(current_user)
   end
 
-  def new
-   @stripe_btn_data = {
-     key: "#{ Rails.configuration.stripe[:publishable_key] }",
-     description: "BigMoney Membership - #{current_user.email}",
-     amount: Amount.default
-   }
 
-  end
 
   class Amount
   def self.default
