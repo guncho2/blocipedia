@@ -19,12 +19,13 @@ class WikisController < ApplicationController
   end
 
   def index
-    if current_user.standard?
-@wikis = Wiki.where(private: false)
-else
-  	    @wikis = Wiki.all
-  	  end
+  if !current_user || current_user.standard?
+    @wikis = Wiki.where(private: false)
+  else
+    @wikis = Wiki.all
+  end
 end
+
 
   def create
 
