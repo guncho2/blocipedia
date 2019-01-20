@@ -19,11 +19,16 @@ class WikisController < ApplicationController
   end
 
   def index
-
+    if current_user.standard?
+@wikis = Wiki.where(private: false)
+else
   	    @wikis = Wiki.all
   	  end
+end
 
   def create
+
+
     @wiki = current_user.wikis.new(wiki_params)
     # @wiki = Wiki.new(params.require(:wiki).permit(:title, :body))
 	    # @wiki = Wiki.new
