@@ -1,3 +1,4 @@
+<p>Find me in app/views/wikis/index.html.erb</p>
 <h1>All wiki</h1>
 
 
@@ -8,9 +9,9 @@
 
 
         <%= link_to markdown(wiki.title), wiki %>
-        <small>
 
-              </small>
+            <small>Created by: <%= wiki.user.email %></small>
+
       </h4>
     </div>
 

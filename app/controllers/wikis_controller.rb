@@ -2,6 +2,7 @@ class WikisController < ApplicationController
   def edit
 
     @wiki = Wiki.find(params[:id])
+    @collaborators = @wiki.collaborators
 
   end
 
@@ -15,14 +16,17 @@ class WikisController < ApplicationController
   def show
 
     @wiki = Wiki.find(params[:id])
+    @collaborators = @wiki.collaborators
+    @users = User.find_by(id: session[:user_id])
 
   end
 
   def index
+
   if !current_user || current_user.standard?
     @wikis = Wiki.where(private: false)
   else
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 end
 

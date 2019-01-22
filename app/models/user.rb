@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-has_many :wikis, dependent: :destroy
+
+has_many :wikis
+has_many :collaborators, dependent: :destroy
 
 before_save { self.email = email.downcase if email.present? }
   after_initialize :set_role, :if => :new_record?
